@@ -17,6 +17,9 @@ namespace Exercise2Interface.Entities
             Amount = amount;
         }
 
-
+        public override string ToString()
+        {
+            return $"Date: {DueDate.ToString("dd/MM/yyyy")} - Value: {Amount}";
+        }
     }
 }
