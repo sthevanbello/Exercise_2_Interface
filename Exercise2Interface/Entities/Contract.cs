@@ -12,7 +12,7 @@ namespace Exercise2Interface.Entities
         public DateTime DateContract { get; set; }
         public double TotalValue { get; set; }
 
-        public List<Installments> Installments = new List<Installments>();
+        public List<Installments> Installments { get; private set; } = new List<Installments>();
 
         public Contract(int numberOfContract, DateTime dateContract, double totalValue)
         {

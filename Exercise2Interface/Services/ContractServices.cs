@@ -10,8 +10,7 @@ namespace Exercise2Interface.Services
     class ContractServices
     {
         private IOnlinePaymentService _onlinePaymentService;
-        Installments installments;
-        DateTime date;
+        
 
         public void ProcessContract(Contract contract, int month, IOnlinePaymentService onlinePaymentService)
         {
@@ -19,15 +18,13 @@ namespace Exercise2Interface.Services
 
             for (int i = 1; i <= month; i++)
             {
-                double total = onlinePaymentService.Interest(amountSimple, i);
+                double updateAmount = onlinePaymentService.Interest(amountSimple, i);
 
-                double amount = onlinePaymentService.PaymentFee(total);
+                double amountTotal = onlinePaymentService.PaymentFee(updateAmount);
 
-                date = contract.DateContract.Date.AddMonths(i);
+                DateTime date = contract.DateContract.Date.AddMonths(i);
 
-                installments = new Installments(date, amount);
-
-                contract.AddItem(installments);
+                contract.AddItem(new Installments(date, amountTotal));
             }
         }
     }
